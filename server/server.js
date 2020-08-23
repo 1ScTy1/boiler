@@ -73,7 +73,12 @@ server.get('/api/v1/users', async (req, res) => {
   const users = await rFile()
   res.json(users)
 })
-
+server.get('/api/v1/users/:id', async (req, res) => {
+  const {id} = req.params
+  const users = await rFile()
+  const user = users.filter((el) => el.id === +id)
+  res.json(user)
+})
 server.post('/api/v1/users', async (req, res) => {
   const newUser = req.body
   const user = await rFile()
